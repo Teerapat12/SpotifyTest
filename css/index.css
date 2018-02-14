@@ -1,0 +1,53 @@
+#mainPanel{
+    height: 400px;
+    width: 600px;
+    background: white;
+    text-align:center;
+
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -200px;
+    margin-left: -300px;
+}
+
+.title{
+    padding: 18px;
+    font-size: 35px;
+    letter-spacing: 3px;
+}
+
+.caption{
+    padding: 18px;
+    font-size: 25px;
+    letter-spacing: 4px;
+}
+
+
+#spotifyLogin {
+    margin-top:40px;
+    -moz-box-shadow: 0px -1px 11px -1px #3dc21b;
+    -webkit-box-shadow: 0px -1px 11px -1px #3dc21b;
+    box-shadow: 0px -1px 11px -1px #3dc21b;
+    background-color:#44c767;
+    -moz-border-radius:28px;
+    -webkit-border-radius:28px;
+    border-radius:28px;
+    border:1px solid #18ab29;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-family:Arial;
+    font-size:17px;
+    padding:16px 68px;
+    text-decoration:none;
+    text-shadow:0px 3px 4px #2f6627;
+}
+#spotifyLogin:hover {
+    background-color:#1a771a;
+}
+#spotifyLogin:active {
+    position:relative;
+    top:1px;
+}
+

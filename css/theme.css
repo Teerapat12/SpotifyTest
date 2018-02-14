@@ -1,0 +1,18 @@
+body, html {
+    height: 100%;
+    font: 400 15px/1.8 "Lato", sans-serif;
+    overflow: hidden;
+}
+
+body{
+    background-image:url('../images/blurry-image-background-of-many-audience-concert-in-big-rock-concert_2313-788.jpg');
+
+    /* Full height */
+    height: 100%;
+    width:100%;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

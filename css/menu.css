@@ -1,0 +1,53 @@
+#gamePanel{
+    height: 600px;
+    width: 1000px;
+    background: white;
+    text-align:center;
+
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -320px;
+    margin-left: -500px;
+
+    padding-left:15px;
+    padding-top:20px;
+}
+
+
+#spotifyLogout{
+    width:40px;
+    height:40px;
+    background-image:url("https://static.fjcdn.com/pictures/Which+close+button+should+i+use+i+have+this+two_e08deb_5442440.png");
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    cursor:pointer;
+}
+
+#spotifyLogout:hover{
+    width:41px;
+    height:41px;
+
+    margin-top:-0.5px;
+    margin-left:-0.5px;
+}
+
+
+.btnAnswer {
+    border-radius: 28px;
+    font-family: Arial;
+    color: #ffffff;
+    font-size: 20px;
+    background:  #64d36d;
+    padding: 10px 40px 10px 40px;
+    text-decoration: none;
+    cursor:pointer;
+}
+
+.btnAnswer:hover {
+    background: #519956;
+    text-decoration: none;
+}
