@@ -9,17 +9,42 @@ const queueMax = 10;
 
 let soundPlayer;
 let interval;
+let countdownCircular;
+let answerSong;
+let score = 0;
+let answeredSongNumber = 0;
 
 function init(){
+  $("#onAnswerPanel").hide();
   $("#game").hide();
+  //Comment
+  // $("#loading").hide();
+  // $("#onAnswerPanel").show();
   //Add logout function to button
-  $("#spotifyLogout").click(logout)
-  $(".btnAnswer").click(onAnswer);
+  $("#spotifyLogout").click(logout);
+  $("#btnAnswer").click(onAnswer);
+  $("#afterAnswerBtn").click(onContinue);
   // Validate if user really logged in or not.
   setupGame();
 
   // Initialize image picker
   $("select").imagepicker();
+
+  countdownCircular = $("#countdownCircular").countdown360({
+    radius      : 200,
+    seconds     : 3,
+    strokeWidth : 10,
+    fillStyle   : '#64d36d',
+    strokeStyle : '#519956',
+    fontSize    : 60,
+    fontColor   : '#FFFFFF',
+    smooth:true,
+    autostart: false,
+    onComplete  : function () {
+      startGame()
+    }
+  });
+  countdownCircular.start();
 }
 
 function logout(){
@@ -39,15 +64,17 @@ function setupGame(){
     musicController.setAccessToken(access_token);
     // Get User tracks using Spotify API
     musicController.getMyTopTracks()
-      .then((data)=>startGame())
+      .then((data)=>
+        // startGame()
+        console.log("FINNISH")
+      )
       .catch((err)=>{
       console.log(err);
-      alert("Maybe token expire")
+      alert("Maybe token expire. Please re-login")
     });
   }
   else{
     alert("You are not logged in yet!");
-    logout();
   }
 }
 
@@ -79,11 +106,15 @@ function loadSongs(n){
 function onStartLoad(){
   $("#game").hide();
   $("#loading").show();
+  countdownCircular.start();
+
+
 }
 
 function onFinishLoad(){
   $("#loading").hide();
   $("#game").show();
+  countdownCircular.stop();
 }
 
 function mapSongsToUI(songs){
@@ -97,7 +128,7 @@ function mapSongsToUI(songs){
   imagePicker.imagepicker();
 
   ans = Math.floor(Math.random()*songs.length); //Random
-  const answerSong = songs[ans];
+  answerSong = songs[ans];
   const answerSongPreview = answerSong.preview_url;
   playSound(answerSongPreview);
   startCountDown();
@@ -105,7 +136,7 @@ function mapSongsToUI(songs){
 
 function playSound(url) {
   soundPlayer = new Audio(url);
-  soundPlayer.play();
+  soundPlayer.play(); //Comment because I want to listen ti music while working. haha. to be uncomment
 }
 
 function stopSound(){
@@ -125,28 +156,75 @@ function startCountDown(){
 function timeUp(interval){
   clearInterval(interval);
   //Show Game Over UI here.
+
+  const finalScore = score;
+  score = 0;
+  $("#game").hide();
+  $("#answerResult").text("Time Up!");
+  $("#afterAnswerBtn").text("Retry");
+  $("#artistImage").css({"border-color":"#aa2211"});
+  $("#scoreText").text("Final score: "+finalScore);
+  $("#onAnswerPanel").show();
+
+  mapAnswerToUI();
 }
 
 function onAnswer(e){
+  answeredSongNumber+=1;
+
+  stopSound();
+
   const answer = $(".image-picker").data('picker').selected_values();
   console.log(answer);
+  console.log(answerSong);
+
   if(answer[0]==ans) onCorrectAnswer();
   else onWrongAnswer("Wrong");
+  //Show information about the real song. Then press next to go to next song? Should have better UX than current version
+  mapAnswerToUI();
 
   clearInterval(interval);
   $("#countDown").text(30);
   stopSound();
-  setupLevel(3);
+  playSound(answerSong.preview_url);
+  // setupLevel(3);
+}
+
+function mapAnswerToUI(){
+  $("#artistImage").attr('src',answerSong.singerPicture);
+  $("#songName").text(answerSong.name);
+  $("#artistName").text("By "+answerSong.artists[0].name);
+  $("#songUrl").attr('href',answerSong.external_urls.spotify);
 }
 
 function onCorrectAnswer(){
-  alert("Correct!");
+  score+= timeLeft;
+
+  $("#scoreText").text("Score: "+score);
+  $("#game").hide();
+  $("#answerResult").text("Correct!");
+  $("#afterAnswerBtn").text("Continue");
+  $("#artistImage").css({"border-color":"#519956"});
+  $("#onAnswerPanel").show();
 }
 
 function onWrongAnswer(){
-  alert("Wrong");
+  const finalScore = score;
+  score = 0;
+  musicController.getMyTopTracks(); //Reset songs.
+  $("#game").hide();
+  $("#answerResult").text("Wrong!");
+  $("#afterAnswerBtn").text("Retry");
+  $("#artistImage").css({"border-color":"#aa2211"});
+  $("#scoreText").text("Final score: "+finalScore);
+  $("#onAnswerPanel").show();
+}
+
+function onContinue(){
+  stopSound();
+  $("#onAnswerPanel").hide();
+  setupLevel(3);
 }
 
 init();
-
 

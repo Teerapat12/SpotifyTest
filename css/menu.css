@@ -51,3 +51,56 @@
     background: #519956;
     text-decoration: none;
 }
+
+.btn {
+    border-radius: 28px;
+    font-family: Arial;
+    color: #ffffff;
+    font-size: 20px;
+    background:  #64d36d;
+    padding: 10px 40px 10px 40px;
+    text-decoration: none;
+    cursor:pointer;
+}
+
+.btn:hover {
+    background: #519956;
+    text-decoration: none;
+}
+
+#loading {
+    /*display: flex;*/
+    /*align-items: center;*/
+    /*justify-content: center;*/
+}
+
+#loadingText{
+    font-size:3em;
+    font-weight: bold;
+    margin-bottom:20px;
+}
+
+#answerResult{
+    font-size:3em;
+}
+
+#artistImage{
+    border-radius:100px;
+    border:4px #519956 solid;
+    margin-bottom:10px;
+}
+
+#songName{
+    font-size:2em;
+}
+
+#artistName{
+    font-size:1.25em;
+    font-weight:bold;
+}
+
+#scoreText{
+    margin-top:30px;
+    font-size:2em;
+    font-weight:bold;
+}

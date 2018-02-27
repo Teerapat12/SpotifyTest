@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="./css/theme.css">
     <link rel="stylesheet" type="text/css" href="./css/menu.css">
+    <link rel="stylesheet" type="text/css" href="./css/ariutta-loading.css">
     <link rel="stylesheet" type="text/css" href="./library/image-picker/image-picker.css">
     <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
     <title>Spotify 30s Quiz</title>
@@ -18,14 +19,29 @@
         <select class="image-picker show-labels show-html center">
         </select>
 
-        <button class="btnAnswer">Answer</button>
+        <button class="btn" id="btnAnswer">Answer</button>
 
         <div id="countDown"></div>
     </div>
 
+
     <div id="loading">
-        Loading...!!
+        <div id="loadingText">Get Ready!</div>
+
+        <div id="countdownCircular"></div>
     </div>
+
+    <div id="onAnswerPanel">
+        <div id="answerResult">Correct!</div>
+        <img id="artistImage" src="https://pbs.twimg.com/profile_images/952969165370884096/bK1_Bkpq_400x400.jpg" height="200" width="200">
+        <div class="resultText" id="songName">That's what I Like</div>
+        <div class="resultText" id="artistName">By Bruno Mars</div>
+        <a class="resultText" target="_blank" id="songUrl" >Listen Here</a>
+
+        <div id="scoreText">Score: 78</div>
+        <button id="afterAnswerBtn" class="btn">Continue</button>
+    </div>
+
 </div>
 
 
@@ -35,6 +51,7 @@
 <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 <script src="js/constant.js"></script>
 <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="js/jquerycountdown360.min.js"></script>
 <script src="library/image-picker/image-picker.js"></script>
 <script src="js/spotify-web-api.js"></script>
 <script src="js/musicController.js"></script>
