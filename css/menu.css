@@ -104,3 +104,31 @@
     font-size:2em;
     font-weight:bold;
 }
+
+#gameTitle{
+    font-size:2em;
+    margin-bottom:15px;
+}
+
+#countDown{
+    font-size: 2em;
+}
+
+#scoreTextInGame{
+    position: absolute;
+    bottom: 0;
+    left: 0 ;
+    font-size:1.5em;
+    margin-left:20px;
+    margin-bottom:10px;
+}
+
+#progressTextInGame{
+    position: absolute;
+    bottom: 0;
+    right: 0 ;
+    font-size:1.25em;
+    margin-right:20px;
+    margin-bottom:10px;
+}
+

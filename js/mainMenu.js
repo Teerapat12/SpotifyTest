@@ -28,6 +28,8 @@ function init(){
   setupGame();
 
   // Initialize image picker
+  $("select").prop("selectedIndex", -1);
+
   $("select").imagepicker();
 
   countdownCircular = $("#countdownCircular").countdown360({
@@ -117,15 +119,27 @@ function onFinishLoad(){
   countdownCircular.stop();
 }
 
+function updateInScoreGame(){
+  $("#scoreTextInGame").text("Score: "+score);
+  $("#progressTextInGame").text("Answered songs: "+ answeredSongNumber);
+}
+
+
+
 function mapSongsToUI(songs){
-  console.log(songs);
   const imagePicker = $(".image-picker")
   imagePicker.empty();
   for(let i=0;i<songs.length;i++) {
     const song = songs[i];
     imagePicker.append($('<option data-img-src="' + song.singerPicture + '" data-img-label="'+song.artists[0].name+'" value="' + i + '">'));
   }
-  imagePicker.imagepicker();
+
+  updateInScoreGame();
+
+  imagePicker.prop("selectedIndex", -1);
+  imagePicker.imagepicker({
+    clicked:onAnswer //Here
+  });
 
   ans = Math.floor(Math.random()*songs.length); //Random
   answerSong = songs[ans];
@@ -175,8 +189,6 @@ function onAnswer(e){
   stopSound();
 
   const answer = $(".image-picker").data('picker').selected_values();
-  console.log(answer);
-  console.log(answerSong);
 
   if(answer[0]==ans) onCorrectAnswer();
   else onWrongAnswer("Wrong");
