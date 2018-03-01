@@ -53,7 +53,7 @@ function logout(){
   //Remove access_token from local storage
   localStorage.removeItem('access_token');
   //redirect back to the index page
-  $(location).attr('href', '/index.html');
+  $(location).attr('href', './index.html');
 }
 
 
