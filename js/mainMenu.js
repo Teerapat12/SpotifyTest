@@ -22,7 +22,7 @@ function init(){
   // $("#onAnswerPanel").show();
   //Add logout function to button
   $("#spotifyLogout").click(logout);
-  $("#btnAnswer").click(onAnswer);
+  // $("#btnAnswer").click(onAnswer);
   $("#afterAnswerBtn").click(onContinue);
   // Validate if user really logged in or not.
   setupGame();
