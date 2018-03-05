@@ -24,7 +24,7 @@ function onLogin(accessToken){
     // Store the access_token into the access_token.
     localStorage.setItem('access_token',accessToken);
     // Redirect to play. ! Play page also has to check the access_token first!
-    $(location).attr('href', '/menu.html');
+    $(location).attr('href', './menu.html');
 
 }
 
