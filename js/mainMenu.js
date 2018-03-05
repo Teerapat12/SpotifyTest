@@ -173,6 +173,7 @@ function timeUp(interval){
 
   const finalScore = score;
   score = 0;
+  answeredSongNumber = 0;
   $("#game").hide();
   $("#answerResult").text("Time Up!");
   $("#afterAnswerBtn").text("Retry");
