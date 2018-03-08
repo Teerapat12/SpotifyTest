@@ -17,9 +17,6 @@ let answeredSongNumber = 0;
 function init(){
   $("#onAnswerPanel").hide();
   $("#game").hide();
-  //Comment
-  // $("#loading").hide();
-  // $("#onAnswerPanel").show();
   //Add logout function to button
   $("#spotifyLogout").click(logout);
   // $("#btnAnswer").click(onAnswer);
@@ -29,9 +26,9 @@ function init(){
 
   // Initialize image picker
   $("select").prop("selectedIndex", -1);
-
   $("select").imagepicker();
-
+  
+  // Start countdown timer UI
   countdownCircular = $("#countdownCircular").countdown360({
     radius      : 200,
     seconds     : 3,
@@ -68,7 +65,7 @@ function setupGame(){
     musicController.getMyTopTracks()
       .then((data)=>
         // startGame()
-        console.log("FINNISH")
+        console.log("Loading Finish")
       )
       .catch((err)=>{
       console.log(err);
